@@ -1,0 +1,28 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using OpenQA.Selenium;
+using NUnit.Framework;
+
+namespace LinkedIn_LoginPage.Test_Cases
+{
+    class BaseTest
+    {
+        public IWebDriver driver;
+        public string url;
+        public string username;
+        public string password;
+
+        [OneTimeSetUp]
+
+        public void BeforeAllTests()
+        {
+            url = Environment.GetEnvironmentVariable("url", EnvironmentVariableTarget.User);
+            username = Environment.GetEnvironmentVariable("url", EnvironmentVariableTarget.User);
+            password = Environment.GetEnvironmentVariable("url", EnvironmentVariableTarget.User);
+        }
+
+     }
+}
