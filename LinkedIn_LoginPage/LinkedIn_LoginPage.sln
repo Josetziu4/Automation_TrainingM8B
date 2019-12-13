@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.156
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkedIn_LoginPage", "LinkedIn_LoginPage.csproj", "{9ECEF363-0215-4C52-805C-0CFB13651FFD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9ECEF363-0215-4C52-805C-0CFB13651FFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9ECEF363-0215-4C52-805C-0CFB13651FFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9ECEF363-0215-4C52-805C-0CFB13651FFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9ECEF363-0215-4C52-805C-0CFB13651FFD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2A89D541-7869-416F-8DB1-582A19E9CCF8}
+	EndGlobalSection
+EndGlobal
