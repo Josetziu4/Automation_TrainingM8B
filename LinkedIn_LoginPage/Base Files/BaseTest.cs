@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using OpenQA.Selenium;
 using NUnit.Framework;
+using OpenQA.Selenium.Chrome;
 
-namespace LinkedIn_LoginPage.Test_Cases
+namespace LinkedIn_LoginPage.Base_Files
 {
     class BaseTest
     {
@@ -24,5 +25,26 @@ namespace LinkedIn_LoginPage.Test_Cases
             password = Environment.GetEnvironmentVariable("url", EnvironmentVariableTarget.User);
         }
 
-     }
+        [SetUp]
+
+        public void BeforeTest()
+        {
+            driver = new ChromeDriver();
+            driver.Url = url;
+        }
+
+        [TearDown]
+
+        public void AfterTest()
+        {
+            driver.Close();
+        }
+
+        [OneTimeTearDown]
+
+        public void AfterAllTests()
+        {
+            driver.Quit();
+        }
+    }
 }

@@ -57,6 +57,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Page Objects\LinkedIn_LoginPage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Base Files\BaseTest.cs" />
@@ -66,7 +67,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Page Objects\" />
     <Folder Include="Reporting\" />
     <Folder Include="Test Cases\" />
   </ItemGroup>
