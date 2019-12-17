@@ -21,8 +21,8 @@ namespace LinkedIn_LoginPage.Base_Files
         public void BeforeAllTests()
         {
             url = Environment.GetEnvironmentVariable("url", EnvironmentVariableTarget.User);
-            username = Environment.GetEnvironmentVariable("url", EnvironmentVariableTarget.User);
-            password = Environment.GetEnvironmentVariable("url", EnvironmentVariableTarget.User);
+            username = Environment.GetEnvironmentVariable("username", EnvironmentVariableTarget.User);
+            password = Environment.GetEnvironmentVariable("password", EnvironmentVariableTarget.User);
         }
 
         [SetUp]
