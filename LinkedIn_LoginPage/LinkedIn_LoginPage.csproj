@@ -44,16 +44,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base Files\BaseTest.cs" />
-    <Compile Include="Page Object\Linkedin_LoginPage.cs" />
+    <Compile Include="Page Object\Linkedin_LoginPageModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Test Cases\LinkedIn_LoginTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Test Cases\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <PackageReference Include="DotNetSeleniumExtras.WaitHelpers">
       <Version>3.11.0</Version>
