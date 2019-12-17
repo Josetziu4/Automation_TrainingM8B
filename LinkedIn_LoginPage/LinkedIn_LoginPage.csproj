@@ -58,9 +58,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base Files\BaseTest.cs" />
-    <Compile Include="Page Objects\LinkedIn_LoginPage.cs" />
+    <Compile Include="Page Objects\LinkedIn_LoginPageModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Test Cases\LinkedIn_LoginTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -68,7 +69,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Reporting\" />
-    <Folder Include="Test Cases\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
