@@ -19,10 +19,15 @@ namespace LinkedIn_LoginPage.Page_Objects
         }
 
         /*ELEMENT LOCATORS*/
-        private static readonly string STR_USERNAME_TEXTFIELD = "username";
-        private static readonly string STR_PASSWORD_TEXTFIELD = "password";
+        private static readonly string STR_USERNAME_TEXTFIELD_Id = "username";
+        private static readonly string STR_PASSWORD_TEXTFIELD_Id = "password";
+        private static readonly string STR_LOGIN_BUTTON_XPath = "//*[text()='Iniciar sesión' or text()='Sign in']";
 
         /*PAGE ELEMENT OBJECTS*/
+        private static IWebElement objUsernameText => _objDriver.FindElement(By.Id(STR_USERNAME_TEXTFIELD_Id));
+        private static IWebElement objPasswordText => _objDriver.FindElement(By.Id(STR_PASSWORD_TEXTFIELD_Id));
+        private static IWebElement objLoginButton => _objDriver.FindElement(By.XPath(STR_LOGIN_BUTTON_XPath));
+
         /*GET ELEMENT METHODS*/
         /*PAGE ELEMENT ACTIONS*/
     }
