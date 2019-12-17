@@ -8,12 +8,12 @@ using OpenQA.Selenium;
 
 namespace LinkedIn_LoginPage.Page_Objects
 {
-    class LinkedIn_LoginPage:BaseTest
+    class LinkedIn_LoginPageModel:BaseTest
     {
         /*DRIVER REFERENCE*/
         private static IWebDriver _objDriver;
 
-        public LinkedIn_LoginPage(IWebDriver objDriver)
+        public LinkedIn_LoginPageModel(IWebDriver objDriver)
         {
             _objDriver = objDriver;
         }
@@ -29,6 +29,24 @@ namespace LinkedIn_LoginPage.Page_Objects
         private static IWebElement objLoginButton => _objDriver.FindElement(By.XPath(STR_LOGIN_BUTTON_XPath));
 
         /*GET ELEMENT METHODS*/
+        public IWebElement GetUsernameField()
+        {
+            return objUsernameText;
+        }
+        public IWebElement GetPasswordField()
+        {
+            return objPasswordText;
+        }
+        public IWebElement GetLoginButton()
+        {
+            return objLoginButton;
+        }
+
         /*PAGE ELEMENT ACTIONS*/
+        public void fnEnterUsername(string pstrUsername)
+        {
+            objUsernameText.Clear();
+            objUsernameText.SendKeys(pstrUsername);
+        }
     }
 }
