@@ -48,5 +48,16 @@ namespace LinkedIn_LoginPage.Page_Objects
             objUsernameText.Clear();
             objUsernameText.SendKeys(pstrUsername);
         }
+
+        public void fnEnterPassword(string pstrPassword)
+        {
+            objPasswordText.Clear();
+            objPasswordText.SendKeys(pstrPassword);
+        }
+
+        public void fnClickSignInButton()
+        {
+            objLoginButton.Click();
+        }
     }
 }
