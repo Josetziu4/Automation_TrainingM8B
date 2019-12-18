@@ -16,8 +16,29 @@ namespace LinkedIn_LoginPage.Test_Cases
         [Test]
         public void LinkedIn_Login()
         {
-            objLogin = new LinkedIn_LoginPageModel(driver);
-            objLogin.fnEnterUsername(username);
+            try
+            {
+                objLogin = new LinkedIn_LoginPageModel(driver);
+                driver.Manage().Window.Maximize();
+                objLogin.fnEnterUsername(username);
+                objLogin.fnEnterPassword(password);
+                objLogin.fnClickLoginButton();
+                Assert.AreEqual("https://www.linkedin.com/feed/", driver.Url);
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail();
+                Console.WriteLine(ex.Message);
+                Console.WriteLine("Test Case Failed.");
+            }
+            //catch(AssertionException x)
+            //{
+            //    Console.WriteLine("Exception due to assert.");
+            //}
+            finally
+            {
+                //Terminar conexciones, etc...
+            }
         }
     }
 }
