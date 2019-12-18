@@ -37,14 +37,14 @@ namespace LinkedIn_LoginPage.Base_Files
 
         public void AfterTest()
         {
-            driver.Close();
+          //  driver.Close();
         }
 
         [OneTimeTearDown]
 
         public void AfterAllTests()
         {
-            driver.Quit();
+         //   driver.Quit();
         }
     }
 }
