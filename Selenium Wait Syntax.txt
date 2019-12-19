@@ -1,0 +1,10 @@
+DotNetSeleniumExtras.WaitHelpers ---Nuget
+
+using dotnetseleniumextras.waithelpers -- Libreria
+
+WebDriverWait wait; ---Declarar el wait
+
+new webdriverwait(driver, new timespan(hrs,min,seg)); ---Configuracion del wait
+
+
+wait.Until(ExpectedConditions.Condicion(MetodoParaObtenerElemento())); ---Syntaxis del wait
