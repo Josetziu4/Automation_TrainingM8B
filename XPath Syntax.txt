@@ -1,0 +1,5 @@
+//  <<---Relativo
+button <<<---Tipo de elemento (button,input,div,li.etc)
+[]   <<--- Start filter
+[@class <<--- tag
+[@class='launchpad-start-date__start-date-save artdeco-button artdeco-button--2 artdeco-button--primary ember-view' <<--value of tag
