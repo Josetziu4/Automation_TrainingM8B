@@ -21,7 +21,9 @@ namespace LinkedIn_LoginPage.Page_Object
         //ELEMENT LOCATOR 
         private static readonly string STR_USSERNAME_TEXTFIELD_ID = "username";
         private static readonly string STR_PASSWORD_TEXTFIELD_ID = "password";
-        private static readonly string STR_LOGIN_BUTTON_XPath = "//*[text()='Iniciar sesion' or text()='Sing in']";
+        private static readonly string STR_LOGIN_BUTTON_XPath = "//*[text()='Iniciar sesión' or text()='Sign in']";
+        //private static readonly string STR_LOGIN_BUTTON_XPath = "//a[text()='btn__primary--large from__button--floating']";
+
 
         //PAGE ELEMENT OBJECT
         private static IWebElement objUsernameText => _objDriver.FindElement(By.Id(STR_USSERNAME_TEXTFIELD_ID));
@@ -47,6 +49,16 @@ namespace LinkedIn_LoginPage.Page_Object
         {
             objUsernameText.Clear();
             objUsernameText.SendKeys(pstrUsername);
+        }
+        public void fnEnterPassword(string pstrPassword)
+        {
+            objPasswordText.Clear();
+            objPasswordText.SendKeys(pstrPassword);
+        }
+        public void fnClickSignInButton()
+        {
+            objLogin_Button.Click();
+           
         }
 
     }

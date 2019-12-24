@@ -14,11 +14,12 @@ namespace LinkedIn_LoginPage.Test_Cases
         public static Linkedin_LoginPageModel objLogin;
 
         [Test]
-
         public void LinkedIn_login()
         {
             objLogin = new Linkedin_LoginPageModel(driver);
             objLogin.fnEnterUsername(username);
+            objLogin.fnEnterPassword(password);
+            objLogin.fnClickSignInButton();
         }
     }
 }
