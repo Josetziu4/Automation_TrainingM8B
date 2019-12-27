@@ -6,12 +6,17 @@ using System.Threading.Tasks;
 using LinkedIn_LoginPage.Base_Files;
 using LinkedIn_LoginPage.Page_Objects;
 using NUnit.Framework;
+using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
+
 
 namespace LinkedIn_LoginPage.Test_Cases
 {
     class LinkedIn_LoginTest : BaseTest
     {
         public static LinkedIn_LoginPageModel objLogin;
+        public static LinkedIn_SearchPageModel objSearch;
+        WebDriverWait _objDriverWait;
 
         [Test]
         public void LinkedIn_Login()
@@ -22,7 +27,7 @@ namespace LinkedIn_LoginPage.Test_Cases
                 objLogin = new LinkedIn_LoginPageModel(driver);
                 objLogin.fnEnterUsername(username);
                 objLogin.fnEnterPassword(password);
-                objLogin.fnClickLoginButton();
+                objLogin.FnClickLoginButton();
                 Assert.AreEqual("https://www.linkedin.com/feed/", driver.Url);
 
                 driver.Manage().Window.Maximize();
@@ -38,6 +43,7 @@ namespace LinkedIn_LoginPage.Test_Cases
 
             catch (AssertionException ex2)
             {
+                Console.WriteLine(ex2.Message);
                 Console.WriteLine("Error due missing transaction date in valid Range");
             }
 
@@ -47,14 +53,59 @@ namespace LinkedIn_LoginPage.Test_Cases
 
                 //driver.Close();
             }
-
-
-           
-
-
-            
+                         
+                                   
         }
 
-        
+        [Test]
+        public void LinkedIn_Search()
+        {
+
+            try
+            {
+                objLogin = new LinkedIn_LoginPageModel(driver);
+                objSearch = new LinkedIn_SearchPageModel(driver);
+                _objDriverWait = new WebDriverWait(driver, new TimeSpan(0, 0, 5));
+                driver.Manage().Window.Maximize();
+                objLogin.fnEnterUsername(username);
+                objLogin.fnEnterPassword(password);
+                objLogin.FnClickLoginButton();
+                Assert.AreEqual("https://www.linkedin.com/feed/", driver.Url);
+                objSearch.FnClickSearchField("Agile thought");
+                _objDriverWait.Until(ExpectedConditions.UrlContains("results"));
+                objSearch.FnClickOnPeople();
+                _objDriverWait.Until(ExpectedConditions.UrlContains("people"));
+                objSearch.FnClickSearchAllFilters();
+                objSearch.FnEnterLocations("México");
+                //_objDriverWait.Until(ExpectedConditions.ElementIsVisible(objSearch.GetCountry));
+                objSearch.FnEnterLocations("Mexico");
+                objSearch.FnEnterLocations("Italy");
+
+
+            }
+
+            catch (FormatException X)
+            {
+                Assert.Fail();
+                Console.WriteLine(X.Message);
+
+                Console.WriteLine("Test case failed");
+            }
+
+            catch (AssertionException ex2)
+            {
+                Console.WriteLine("Error due missing information in Results");
+            }
+
+            finally
+            {
+                // End conections
+               //driver.Close();
+            }
+
+                                          
+        }
+
+
     }
 }
