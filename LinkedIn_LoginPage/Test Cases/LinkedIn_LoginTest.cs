@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 using LinkedIn_LoginPage.Base_Files;
 using LinkedIn_LoginPage.Page_Objects;
 using NUnit.Framework;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
+using System.Threading;
 
 
 namespace LinkedIn_LoginPage.Test_Cases
@@ -76,11 +78,15 @@ namespace LinkedIn_LoginPage.Test_Cases
                 objSearch.FnClickOnPeople();
                 _objDriverWait.Until(ExpectedConditions.UrlContains("people"));
                 objSearch.FnClickSearchAllFilters();
+                _objDriverWait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//h2[@class='t-20 t-20--open t-black--light t-normal']")));
                 objSearch.FnEnterLocations("México");
                 //_objDriverWait.Until(ExpectedConditions.ElementIsVisible(objSearch.GetCountry));
                 objSearch.FnEnterLocations("Mexico");
                 objSearch.FnEnterLocations("Italy");
-
+                objSearch.fnSelectEnglishCheckBox();
+                _objDriverWait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//button[@class='search-advanced-facets__button--apply ml4 mr2 artdeco-button artdeco-button--3 artdeco-button--primary ember-view']")));
+                objSearch.fnClickAppAllFiltersButton();
+                objSearch.fnMultipleSearch();
 
             }
 
