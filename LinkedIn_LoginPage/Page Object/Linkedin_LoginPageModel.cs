@@ -11,25 +11,24 @@ namespace LinkedIn_LoginPage.Page_Object
     class Linkedin_LoginPageModel : BaseTest
     {
         //DRIVER REFERENCESS
-        private static IWebDriver _objDriver;
+        private static IWebDriver _objDriver;        
 
         public Linkedin_LoginPageModel(IWebDriver driver)
         {
-            _objDriver = driver;
+            _objDriver = driver;            
         }
 
         //ELEMENT LOCATOR 
         private static readonly string STR_USSERNAME_TEXTFIELD_ID = "username";
         private static readonly string STR_PASSWORD_TEXTFIELD_ID = "password";
         private static readonly string STR_LOGIN_BUTTON_XPath = "//*[text()='Iniciar sesión' or text()='Sign in']";
-        //private static readonly string STR_LOGIN_BUTTON_XPath = "//a[text()='btn__primary--large from__button--floating']";
-
+        
 
         //PAGE ELEMENT OBJECT
         private static IWebElement objUsernameText => _objDriver.FindElement(By.Id(STR_USSERNAME_TEXTFIELD_ID));
         private static IWebElement objPasswordText => _objDriver.FindElement(By.Id(STR_PASSWORD_TEXTFIELD_ID));
         private static IWebElement objLogin_Button => _objDriver.FindElement(By.XPath(STR_LOGIN_BUTTON_XPath));
-
+       
         //GET ELEMENT METHODS
         public IWebElement GetUsernameField()
         {
@@ -43,7 +42,7 @@ namespace LinkedIn_LoginPage.Page_Object
         {
             return objLogin_Button;
         }
-
+        
         //PAGE ELELEMET ACTION
         public void fnEnterUsername(string pstrUsername)
         {
@@ -57,9 +56,9 @@ namespace LinkedIn_LoginPage.Page_Object
         }
         public void fnClickSignInButton()
         {
-            objLogin_Button.Click();
-           
+            objLogin_Button.Click();           
         }
+       
 
     }
 }

@@ -29,6 +29,7 @@ namespace LinkedIn_LoginPage.Base_Files
         {
             driver = new ChromeDriver();
             driver.Url = url;
+            driver.Manage().Window.Maximize();
         }
 
         [TearDown]
