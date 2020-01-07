@@ -45,27 +45,26 @@ namespace LinkedIn_LoginPage.Test_Cases
 
                 objSearchPage = new LinkedIn_SearchPageModel(driver);
                 objSearchPage.fnSearchTextBox();
+
                 wait = new WebDriverWait(driver, new TimeSpan(0, 1, 0));
+                wait.Until(condition => driver.FindElement(By.XPath("(//ul[@role='listbox'])[1]")));
                 wait.Until(condition => driver.Url.Equals("https://www.linkedin.com/feed/"));
                 objSearchPage.fnGetPageFilterPeopleButton();
+
                 wait = new WebDriverWait(driver, new TimeSpan(0, 1, 0));
                 wait.Until(condition => driver.Url.Equals("https://www.linkedin.com/search/results/people/?origin=DISCOVER_FROM_SEARCH_HOME"));
                 objSearchPage.fnGetPageFilterAllButton();
                 objSearchPage.fnClickLocationMxCheckBox();
                 objSearchPage.fnEnterLocationCriteria("Italia");
                 objSearchPage.fnGetPageApplyFilterButton();
+
                 wait = new WebDriverWait(driver, new TimeSpan(0, 1, 0));
                 wait.Until(condition => driver.Url.Equals("https://www.linkedin.com/search/results/people/?facetGeoRegion=%5B%22it%3A0%22%2C%22mx%3A0%22%5D&origin=FACETED_SEARCH"));
-
-               
                 objSearchPage.fnEnterTecnologyCriteria("");
-                wait = new WebDriverWait(driver, new TimeSpan(0, 1, 0));
-                //wait.Until(condition => driver.Manage().Timeouts(driver, new TimeSpan() )); //.Url.Distinct("https://www.linkedin.com/search/results/people/?facetGeoRegion=%5B%22it%3A0%22%2C%22mx%3A0%22%5D&origin=FACETED_SEARCH"));
-                //wait.Until(condition => driver.PageSource.StartsWith("https://www.linkedin.com/search/results/people/?facetGeoRegion=%5B%22it%3A0%22%2C%22mx%3A0%22%5D&origin=FACETED_SEARCH"));
-                wait.Until(condition => driver.FindElement(By.XPath("(//span[@class='nav-item__icon'])[1]")));
 
-                objSearchPage.fnSearchTecCriteria();
-                
+                wait = new WebDriverWait(driver, new TimeSpan(0, 1, 0));
+                wait.Until(condition => driver.FindElement(By.XPath("(//span[@class='nav-item__icon'])[1]")));
+                objSearchPage.fnSearchTecCriteria();                
 
             }
             catch (Exception e)
