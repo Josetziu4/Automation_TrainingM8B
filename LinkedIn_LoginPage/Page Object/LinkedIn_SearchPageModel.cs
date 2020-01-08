@@ -24,7 +24,8 @@ namespace LinkedIn_LoginPage.Page_Object
         private readonly static string STR_LOCATION_TEXT_BOX = "//input[@placeholder='Add a country/region' or @placeholder='Añadir un país o región']";
         private static readonly string STR_APPLY_FILTER_BTN_XPath = "//span[text()[normalize-space()='Aplicar']]";
         private static readonly string STR_SEARCH_JAVA_TEC_CRT_XPath = "//p[contains(@class,'subline-level-1-js mt1') and text()[normalize-space()='Java Developer en iTexico']]";
-        private static readonly string STR_SEARCH_NAME_CRT_XPath = "(//span[@class='name actor-name'])[1]";
+
+        private static readonly string STR_SEARCH_NAME_CRT_XPath = "(//span[@class='name actor-name' or @class='actor-name'])[1]";
         private static readonly string STR_SEARCH_ROLE_CRT_XPath = "(//span[@dir='ltr'])[1]";
         private static readonly string STR_SEARCH_URL_CRT_XPath = "(//div[@class='search-result__info pt3 pb4 ph0']/a)[1]";
         
@@ -41,6 +42,7 @@ namespace LinkedIn_LoginPage.Page_Object
         private static IWebElement objLocation_Text_Box => _objDriver.FindElement(By.XPath(STR_LOCATION_TEXT_BOX));
         private static IWebElement objApply_Filter_Button => _objDriver.FindElement(By.XPath(STR_APPLY_FILTER_BTN_XPath));
         private static IWebElement objSearch_Java_Tec_Crt_TxtBox => _objDriver.FindElement(By.XPath(STR_SEARCH_JAVA_TEC_CRT_XPath));
+
         private static IWebElement objSearch_Name_TxtBox => _objDriver.FindElement(By.XPath(STR_SEARCH_NAME_CRT_XPath));
         private static IWebElement objSearch_Role_TxtBox => _objDriver.FindElement(By.XPath(STR_SEARCH_ROLE_CRT_XPath));
         private static IWebElement objSearch_URL_TxtBox => _objDriver.FindElement(By.XPath(STR_SEARCH_URL_CRT_XPath));
@@ -124,33 +126,81 @@ namespace LinkedIn_LoginPage.Page_Object
         }
         public void fnEnterTecnologyCriteria(string strTecnologyCrt)
         {
-            objSearch_TextBox.Clear();
-            objSearch_TextBox.SendKeys(strTecnologyCrt);
-            
+            objSearch_TextBox.Clear();           
+            objSearch_TextBox.SendKeys(strTecnologyCrt);           
         }
         public void fnEnterTecnologyCriteriaEnter()
-        {
-            
+        {            
             objSearch_TextBox.SendKeys(Keys.Enter);
         }
         public void fnSearchTecCriteria()
         {
-          string[] arrTechnologies = new string[] { "Java Developer", "C Developer", "Phyton Developer", "Pega Developer", "C# Developer" };          
+          string[] arrTechnologies = new string[] { "Java Developer", "C Developer", "Phyton Developer", "Pega Developer", "C# Developer" };
 
-          foreach (string technology in arrTechnologies)
-          {
+            foreach (string technology in arrTechnologies)
+            {
+                if (technology== "Java Developer")
+                {
+                    fnEnterTecnologyCriteria(technology);
+
+                    fnEnterTecnologyCriteriaEnter();
+                    Console.WriteLine("****************New Member*****************");
+                    Console.WriteLine("");
+                    Console.WriteLine("Tecnology Information: " + technology);
+                    Console.WriteLine("Name: " + objSearch_Name_TxtBox.Text.ToString());                   
+                    Console.WriteLine("Role: " + objSearch_Role_TxtBox.Text.ToString());                    
+                    Console.WriteLine("Link URL Profile: " + objSearch_URL_TxtBox.GetAttribute("href").ToString());                    
+                }
+                else if (technology == "C Developer")
+                {
+                    fnEnterTecnologyCriteria(technology);
+
+                    fnEnterTecnologyCriteriaEnter();
+                    Console.WriteLine("****************New Member*****************");
+                    Console.WriteLine("");
+                    Console.WriteLine("Tecnology Information: " + technology);
+                    Console.WriteLine("Name: " + objSearch_Name_TxtBox.Text.ToString());
+                    Console.WriteLine("Role: " + objSearch_Role_TxtBox.Text.ToString());                    
+                    Console.WriteLine("Link URL Profile: " + objSearch_URL_TxtBox.GetAttribute("href").ToString());                   
+                }
+                else if (technology == "Phyton Developer")
+                {
+                    fnEnterTecnologyCriteria(technology);
+
+                    fnEnterTecnologyCriteriaEnter();
+                    Console.WriteLine("****************New Member*****************");
+                    Console.WriteLine("");
+                    Console.WriteLine("Tecnology Information: " + technology);
+                    Console.WriteLine("Name: " + objSearch_Name_TxtBox.Text.ToString());
+                    Console.WriteLine("Role: " + objSearch_Role_TxtBox.Text.ToString());                    
+                    Console.WriteLine("Link URL Profile: " + objSearch_URL_TxtBox.GetAttribute("href").ToString());                    
+                }
+                else if (technology == "Pega Developer")
+                {
+                    fnEnterTecnologyCriteria(technology);
+
+                    fnEnterTecnologyCriteriaEnter();
+                    Console.WriteLine("****************New Member*****************");
+                    Console.WriteLine("");
+                    Console.WriteLine("Tecnology Information: " + technology);
+                    Console.WriteLine("Name: " + objSearch_Name_TxtBox.Text.ToString());
+                    Console.WriteLine("Role: " + objSearch_Role_TxtBox.Text.ToString());                    
+                    Console.WriteLine("Link URL Profile: " + objSearch_URL_TxtBox.GetAttribute("href").ToString());                    
+                }
+                else if (technology == "C# Developer")
+                {
+                    fnEnterTecnologyCriteria(technology);
+
+                    fnEnterTecnologyCriteriaEnter();
+                    Console.WriteLine("****************New Member*****************");
+                    Console.WriteLine("");
+                    Console.WriteLine("Tecnology Information: " + technology);
+                    Console.WriteLine("Name: " + objSearch_Name_TxtBox.Text.ToString());
+                    Console.WriteLine("Role: " + objSearch_Role_TxtBox.Text.ToString());                    
+                    Console.WriteLine("Link URL Profile: " + objSearch_URL_TxtBox.GetAttribute("href").ToString());                   
+                }
+                else { }
                
-                fnEnterTecnologyCriteria(technology);
-                fnEnterTecnologyCriteriaEnter();
-                Console.WriteLine("****************New Member*****************");
-                Console.WriteLine("Tecnology Information: " + technology);
-                Console.WriteLine("Name: " + objSearch_Name_TxtBox.Text.ToString());
-                Console.WriteLine("Role: " + objSearch_Role_TxtBox.Text.ToString());
-                Console.WriteLine("Link URL Profile: " + objSearch_URL_TxtBox.GetAttribute("href").ToString());
-
-                wait = new WebDriverWait(driver, new TimeSpan(0, 0, 5));
-                wait.Until(condition => driver.FindElement(By.XPath("//*[contains(@class,'search-results__list')]")));
-
             }
 
         }

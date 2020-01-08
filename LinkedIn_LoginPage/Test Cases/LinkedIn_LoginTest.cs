@@ -46,8 +46,7 @@ namespace LinkedIn_LoginPage.Test_Cases
                 objSearchPage = new LinkedIn_SearchPageModel(driver);
                 objSearchPage.fnSearchTextBox();
 
-                wait = new WebDriverWait(driver, new TimeSpan(0, 1, 0));
-                wait.Until(condition => driver.FindElement(By.XPath("(//ul[@role='listbox'])[1]")));
+                wait = new WebDriverWait(driver, new TimeSpan(0, 1, 0));                
                 wait.Until(condition => driver.Url.Equals("https://www.linkedin.com/feed/"));
                 objSearchPage.fnGetPageFilterPeopleButton();
 
