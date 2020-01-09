@@ -7,6 +7,10 @@ using OpenQA.Selenium;
 using NUnit.Framework;
 using OpenQA.Selenium.Chrome;
 
+using LinkedIn_LoginPage.Reporting;
+using AventStack.ExtentReports;
+using AventStack.ExtentReports.Reporter;
+
 namespace LinkedIn_LoginPage.Base_Files
 {
     class BaseTest
@@ -16,12 +20,24 @@ namespace LinkedIn_LoginPage.Base_Files
         public string username;
         public string password;
 
+        public ReportManager manager;
+        public ExtentV3HtmlReporter htmlReporter;
+        public ExtentReports extent;
+        public ExtentTest exTest;
+
         [OneTimeSetUp]
         public void BeforeAllTests()
         {
             url = Environment.GetEnvironmentVariable("url", EnvironmentVariableTarget.User);
             username = Environment.GetEnvironmentVariable("username", EnvironmentVariableTarget.User);
             password = Environment.GetEnvironmentVariable("password", EnvironmentVariableTarget.User);
+
+            manager = new ReportManager();
+
+            extent = new ExtentReports();
+            htmlReporter = new ExtentV3HtmlReporter(manager.fnGetReportPath());
+
+            manager.fnReportSetUp(htmlReporter, extent);
         }
 
         [SetUp]
