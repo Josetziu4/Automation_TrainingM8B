@@ -23,15 +23,21 @@ namespace LinkedIn_LoginPage.Test_Cases
         {
             try
             {
+                exTestStep = exTestCase.CreateNode("Login","Login to LinkedIn");
+
                 objLogin = new Linkedin_LoginPageModel(driver);
                 objLogin.fnEnterUsername(username);
+                exTestCase.Log(AventStack.ExtentReports.Status.Info,$"Useraname: {username}");
                 objLogin.fnEnterPassword(password);
-                objLogin.fnClickSignInButton();                
+                objLogin.fnClickSignInButton();
+                Assert.AreEqual("https://www.linkedin.com/feed/", driver.Url);
+                exTestCase.Pass("User has Loged Successfully");
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
                 Console.WriteLine("Test Case Failed");
+                exTestCase.Fail($"Test Case Failed Erro: {e.Message}");
             }
             finally { }           
         }
@@ -45,9 +51,10 @@ namespace LinkedIn_LoginPage.Test_Cases
 
                 objSearchPage = new LinkedIn_SearchPageModel(driver);
                 objSearchPage.fnSearchTextBox();
-
+                objSearchPage.fnBeforeSearchTextBox();
                 wait = new WebDriverWait(driver, new TimeSpan(0, 1, 0));                
                 wait.Until(condition => driver.Url.Equals("https://www.linkedin.com/feed/"));
+                //wait.Until(condition => driver.FindElement(By.XPath("//div[contains(@class, 'basic-typeahead')]")));
                 objSearchPage.fnGetPageFilterPeopleButton();
 
                 wait = new WebDriverWait(driver, new TimeSpan(0, 1, 0));

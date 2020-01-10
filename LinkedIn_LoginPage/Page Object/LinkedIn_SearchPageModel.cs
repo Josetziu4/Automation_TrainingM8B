@@ -18,6 +18,10 @@ namespace LinkedIn_LoginPage.Page_Object
 
         //ELEMENT LOCATOR         
         private static readonly string STR_SEARCH_TEXTBOX_XPath = "//*[contains(@class,'search-global-typeahead__input')]";
+
+        private static readonly string STR_BEFORE_SEARCH_TEXTBOX_XPath = "//div[contains(@class, 'basic-typeahead')]";
+
+
         private static readonly string STR_FILTER_PEOPLE_BTN_XPath = "//li[contains(@aria-label, 'Buscar personas')]";
         private static readonly string STR_FILTER_ALL_BTN_XPath = "//span[text()='Todos los filtros']";        
         private static readonly string STR_LOCATION_MX_OPTION_CHECKBOX_XPath = "//label[@for='sf-geoRegion-mx:0' and text()[normalize-space()='México'] or text()[normalize-space()='Mexico']]";
@@ -36,6 +40,9 @@ namespace LinkedIn_LoginPage.Page_Object
 
         //PAGE ELEMENT OBJECT       
         private static IWebElement objSearch_TextBox => _objDriver.FindElement(By.XPath(STR_SEARCH_TEXTBOX_XPath));
+
+        private static IWebElement objBefore_Search_TextBox => _objDriver.FindElement(By.XPath(STR_BEFORE_SEARCH_TEXTBOX_XPath));
+
         private static IWebElement objFilter_People_Button => _objDriver.FindElement(By.XPath(STR_FILTER_PEOPLE_BTN_XPath));
         private static IWebElement objFilter_All_Button => _objDriver.FindElement(By.XPath(STR_FILTER_ALL_BTN_XPath));
         private static IWebElement objLocation_Mx_CheckBox => _objDriver.FindElement(By.XPath(STR_LOCATION_MX_OPTION_CHECKBOX_XPath));
@@ -51,6 +58,10 @@ namespace LinkedIn_LoginPage.Page_Object
         public IWebElement GetSearchTextBox()
         {
             return objSearch_TextBox;
+        }
+        public IWebElement GetBeforeSearchTextBox()
+        {
+            return objBefore_Search_TextBox;
         }
         public IWebElement GetPageFilterPeopleButton()
         {
@@ -94,9 +105,17 @@ namespace LinkedIn_LoginPage.Page_Object
         {
             objSearch_TextBox.Click();
         }
+        public void fnBeforeSearchTextBox()
+        {
+            fnSearchTextBox();
+            wait = new WebDriverWait(driver, new TimeSpan(0, 1, 0));
+            //wait.Until(condition => driver.Url.Equals("https://www.linkedin.com/feed/"));
+            wait.Until(condition => driver.FindElement(By.XPath("//div[contains(@class, 'basic-typeahead')]")));
+        }
         public void fnGetPageFilterPeopleButton()
         {
             objFilter_People_Button.Click();
+            
         }
         public void fnGetPageFilterAllButton()
         {
