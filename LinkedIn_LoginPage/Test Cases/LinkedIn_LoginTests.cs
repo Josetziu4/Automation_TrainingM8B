@@ -20,19 +20,22 @@ namespace LinkedIn_LoginPage.Test_Cases
         {
             try
             {
+                exTestStep = exTestCase.CreateNode("Login", "Login to LinkedIn");
                 objLogin = new LinkedIn_LoginPageModel(driver);
                 objLogin.fnEnterUsername(username);
+                exTestCase.Log(AventStack.ExtentReports.Status.Info, $"Username: {username}");
                 objLogin.fnEnterPassword(password);
                 objLogin.fnClickSignInButton();
-                Assert.AreEqual("https://www.linkedin.com/feed/", driver.Url);
+                Assert.AreEqual("https://www.linkedin.com/fed/", driver.Url);
+                exTestStep.Pass("User has logged succesfully");
 
                 driver.Manage().Window.Maximize();
             }
             catch (Exception ex)
             {
-                Assert.Fail();
                 Console.WriteLine(ex.Message);
                 Console.WriteLine("Test Case Failed.");
+                exTestCase.Fail($"Test Case faile with error: {ex.Message}");
             }
             //catch(AssertionException ex)
             //{

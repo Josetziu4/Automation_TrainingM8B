@@ -23,7 +23,10 @@ namespace LinkedIn_LoginPage.Base_Files
         public ReportManager manager;
         public ExtentV3HtmlReporter htmlReporter;
         public ExtentReports extent;
-        public ExtentTest exTest;
+
+        public ExtentTest exTestSuite;
+        public ExtentTest exTestCase;
+        public ExtentTest exTestStep;
 
         [OneTimeSetUp]
         public void BeforeAllTests()
@@ -38,6 +41,8 @@ namespace LinkedIn_LoginPage.Base_Files
             htmlReporter = new ExtentV3HtmlReporter(manager.fnGetReportPath());
 
             manager.fnReportSetUp(htmlReporter, extent);
+
+            exTestSuite = extent.CreateTest(TestContext.CurrentContext.Test.Name);
         }
 
         [SetUp]
@@ -45,6 +50,8 @@ namespace LinkedIn_LoginPage.Base_Files
         {
             driver = new ChromeDriver();
             driver.Url = url;
+
+            exTestCase = exTestSuite.CreateNode(TestContext.CurrentContext.Test.Name);
         }
 
         [TearDown]
@@ -56,6 +63,7 @@ namespace LinkedIn_LoginPage.Base_Files
         [OneTimeTearDown]
         public void AfterAllTests()
         {
+            extent.Flush();
             //driver.Quit();
         }
     }
