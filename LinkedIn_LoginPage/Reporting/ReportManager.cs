@@ -44,7 +44,7 @@ namespace LinkedIn_LoginPage.Reporting
             extent.AddSystemInfo("Date:", DateTime.Now.ToShortDateString());
         }
         [Test]
-        public string fnCaptureImage(IWebDriver pobjDriver)
+        public void fnCaptureImage(IWebDriver pobjDriver, ExtentTest pexTestStep)
         {
             ITakesScreenshot objITake = (ITakesScreenshot)pobjDriver;
             Screenshot objScreenshot = objITake.GetScreenshot();
@@ -62,7 +62,9 @@ namespace LinkedIn_LoginPage.Reporting
             string strScreenshotPath = strScreenshotDirectory + $"\\{TestContext.CurrentContext.Test.Name}_{DateTime.Now.ToString("HHmmss")}.png";
             objScreenshot.SaveAsFile(strScreenshotPath);
 
-            return strScreenshotPath;
+            pexTestStep.Log(Status.Info, "Step Screenshot", MediaEntityBuilder.CreateScreenCaptureFromPath(strScreenshotPath).Build());
+
+            //return strScreenshotPath;
         }
     }
 }

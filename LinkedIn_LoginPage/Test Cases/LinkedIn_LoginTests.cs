@@ -15,7 +15,7 @@ namespace LinkedIn_LoginPage.Test_Cases
     class LinkedIn_LoginTests:BaseTest
     {
         LinkedIn_LoginPageModel objLogin;
-        string strScreenshotPath;
+        //string strScreenshotPath;
 
         [Test]
         public void LinkedIn_Login()
@@ -25,24 +25,30 @@ namespace LinkedIn_LoginPage.Test_Cases
                 exTestStep = exTestCase.CreateNode("Login", "Login to LinkedIn");
                 objLogin = new LinkedIn_LoginPageModel(driver);
                 objLogin.fnEnterUsername(username);
-                exTestCase.Log(AventStack.ExtentReports.Status.Info, $"Username: {username}");
+                exTestCase.Log(Status.Info, $"Username: {username}");
                 objLogin.fnEnterPassword(password);
+                manager.fnCaptureImage(driver, exTestStep);
                 objLogin.fnClickSignInButton();
-                Assert.AreEqual("https://www.linkedin.com/feed/", driver.Url);
+                Assert.AreEqual("https://www.linkedin.com/fed/", driver.Url);
                 exTestStep.Pass("User has logged succesfully");
+                manager.fnCaptureImage(driver, exTestStep);
 
                 exTestStep = exTestCase.CreateNode("Step2", "Test2");
                 exTestStep.Pass("User has 2 succesfully");
 
                 driver.Manage().Window.Maximize();
+                manager.fnCaptureImage(driver, exTestStep);
             }
             catch (Exception ex)
             {
-                strScreenshotPath = manager.fnCaptureImage(driver);
-                exTestStep.Log(AventStack.ExtentReports.Status.Error, "Step has failed with SS", MediaEntityBuilder.CreateScreenCaptureFromPath(strScreenshotPath).Build());
+                //strScreenshotPath = manager.fnCaptureImage(driver);
+                //exTestStep.Log(Status.Error, "Step has failed with SS", MediaEntityBuilder.CreateScreenCaptureFromPath(strScreenshotPath).Build());
+                manager.fnCaptureImage(driver, exTestStep);
                 Console.WriteLine(ex.Message);
                 Console.WriteLine("Test Case Failed.");
+                
                 exTestCase.Fail($"Test Case faile with error: {ex.Message}");
+                Assert.Fail(); //ALWAYS KEEP THE ASSERT.FAIL() AT THE END!!!
             }
             //catch(AssertionException ex)
             //{
