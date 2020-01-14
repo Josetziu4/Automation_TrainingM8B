@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AventStack.ExtentReports;
 using LinkedIn_LoginPage.Base_Files;
 using LinkedIn_LoginPage.Page_Object;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
+
 
 namespace LinkedIn_LoginPage.Test_Cases
 {
@@ -17,6 +20,7 @@ namespace LinkedIn_LoginPage.Test_Cases
         public static LinkedIn_SearchPageModel objSearchPage;
 
         WebDriverWait wait;
+        string strScreenshotPath;
 
         [Test]
         public void LinkedIn_login()
@@ -32,12 +36,24 @@ namespace LinkedIn_LoginPage.Test_Cases
                 objLogin.fnClickSignInButton();
                 Assert.AreEqual("https://www.linkedin.com/feed/", driver.Url);
                 exTestCase.Pass("User has Loged Successfully");
+
+                exTestStep = exTestCase.CreateNode("Step2", "Test2");
+                exTestStep.Pass("User has 2 succesfully");
+
+                driver.Manage().Window.Maximize();
             }
             catch (Exception e)
             {
+                manager.fnCaptureImage(driver);
+                
+                strScreenshotPath = manager.fnCaptureImage(driver);
+
+                exTestStep.Log(AventStack.ExtentReports.Status.Error, "Step has failed with SS", MediaEntityBuilder.CreateScreenCaptureFromPath(strScreenshotPath).Build());
+
                 Console.WriteLine(e.Message);
                 Console.WriteLine("Test Case Failed");
                 exTestCase.Fail($"Test Case Failed Erro: {e.Message}");
+
             }
             finally { }           
         }
@@ -59,6 +75,7 @@ namespace LinkedIn_LoginPage.Test_Cases
 
                 wait = new WebDriverWait(driver, new TimeSpan(0, 1, 0));
                 wait.Until(condition => driver.Url.Equals("https://www.linkedin.com/search/results/people/?origin=DISCOVER_FROM_SEARCH_HOME"));
+        
                 objSearchPage.fnGetPageFilterAllButton();
                 objSearchPage.fnClickLocationMxCheckBox();
                 objSearchPage.fnEnterLocationCriteria("Italia");
