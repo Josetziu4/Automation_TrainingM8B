@@ -42,7 +42,7 @@ namespace LinkedIn_LoginPage.Reporting
             extent.AddSystemInfo("Environment:","QA");
             extent.AddSystemInfo("Date: ",DateTime.Now.ToShortDateString());
         }
-        public string fnCaptureImage(IWebDriver pobjDriver)
+        public void fnCaptureImage(IWebDriver pobjDriver, ExtentTest pexTestStep)
         {
             //get screenshot
             ITakesScreenshot objITake = (ITakesScreenshot)pobjDriver;
@@ -51,6 +51,7 @@ namespace LinkedIn_LoginPage.Reporting
             string strExecutionPath = System.Reflection.Assembly.GetCallingAssembly().CodeBase;//get the directory/folder where the dll is executing
             string strBaseDirectory = strExecutionPath.Substring(0, strExecutionPath.IndexOf("bin"));//Get base directory (cut the directory before bin path)
             strBaseDirectory = new Uri(strBaseDirectory).LocalPath;//Transform the directory format to match local machine (change the directory wich the system can recognize)
+            
             //Check if the folder exist, if not: create one and add a subfolder \\"Screenshots"
             string strScreenshotDirectory = strBaseDirectory + "ExtentReports\\Screenshots";
             if (!Directory.Exists(strScreenshotDirectory))
@@ -60,7 +61,10 @@ namespace LinkedIn_LoginPage.Reporting
             string strScreenshotPath = strScreenshotDirectory + $"\\{TestContext.CurrentContext.Test.Name}_{DateTime.Now.ToString("HHmmss")}.png"; //How to identify the screenshot
             //objScreenshot
             objScreenshot.SaveAsFile(strScreenshotPath);
-            return strScreenshotPath;
+
+            pexTestStep.Log(Status.Info, "Step ScreenShot", MediaEntityBuilder.CreateScreenCaptureFromPath(strScreenshotPath).Build());
+
+            //return strScreenshotPath;
 
         }
     }

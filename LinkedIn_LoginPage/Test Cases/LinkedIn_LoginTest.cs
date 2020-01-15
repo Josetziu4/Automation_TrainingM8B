@@ -33,23 +33,22 @@ namespace LinkedIn_LoginPage.Test_Cases
                 objLogin.fnEnterUsername(username);
                 exTestCase.Log(AventStack.ExtentReports.Status.Info,$"Useraname: {username}");
                 objLogin.fnEnterPassword(password);
+                manager.fnCaptureImage(driver, exTestStep);
                 objLogin.fnClickSignInButton();
                 Assert.AreEqual("https://www.linkedin.com/feed/", driver.Url);
                 exTestCase.Pass("User has Loged Successfully");
-
-                exTestStep = exTestCase.CreateNode("Step2", "Test2");
-                exTestStep.Pass("User has 2 succesfully");
+                manager.fnCaptureImage(driver, exTestStep);
+                //exTestStep = exTestCase.CreateNode("Step2", "Test2");
+                //exTestStep.Pass("User has 2 succesfully");
 
                 driver.Manage().Window.Maximize();
             }
             catch (Exception e)
             {
-                manager.fnCaptureImage(driver);
-                
-                strScreenshotPath = manager.fnCaptureImage(driver);
-
+                //manager.fnCaptureImage(driver);                
+                //strScreenshotPath = manager.fnCaptureImage(driver);
+                manager.fnCaptureImage(driver, exTestStep);
                 exTestStep.Log(AventStack.ExtentReports.Status.Error, "Step has failed with SS", MediaEntityBuilder.CreateScreenCaptureFromPath(strScreenshotPath).Build());
-
                 Console.WriteLine(e.Message);
                 Console.WriteLine("Test Case Failed");
                 exTestCase.Fail($"Test Case Failed Erro: {e.Message}");

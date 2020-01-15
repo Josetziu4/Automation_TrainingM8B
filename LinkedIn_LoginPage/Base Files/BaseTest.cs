@@ -36,6 +36,7 @@ namespace LinkedIn_LoginPage.Base_Files
             password = Environment.GetEnvironmentVariable("password", EnvironmentVariableTarget.User);
 
             manager = new ReportManager();
+
             extent = new ExtentReports();
             htmlReporter = new ExtentV3HtmlReporter(manager.fnGetReportPath());
 
@@ -63,10 +64,9 @@ namespace LinkedIn_LoginPage.Base_Files
         [OneTimeTearDown]
         public void AfterAllTest()
         {
-            extent.Flush();
+            extent.Flush();//generate the report at the end
             //  driver.Quit();
         }
-
 
     }
 }
